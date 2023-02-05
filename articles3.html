@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+    <title>Articles-Spencer Sharp</title>
+</head>
+
+<body>
+    <main>
+        <div class="main-content">
+            <!-- header -->
+            <header class="header">
+                <div class="content">
+                    <div class="navbar">
+                        <a href="./info.html" class="avatar">
+                            <img src="./assets/img/avatar.webp" alt="avatar" />
+                        </a>
+                        <ul class="row">
+                            <li>
+                                <a href="./index.html" class="item">About</a>
+                            </li>
+                            <li>
+                                <a href="./articles.html" class="item" style="color:#14b8a6">Articles</a>
+                            </li>
+                            <li>
+                                <a href="./projects.html" class="item">Projects</a>
+                            </li>
+                            <li>
+                                <a href="./speaking.html" class="item">Speaking</a>
+                            </li>
+                            <li>
+                                <a href="./uses.html" class="item">Uses</a>
+                            </li>
+                        </ul>
+                        <div class="sunny">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="sun">
+                            <path d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+                            </path>
+                        </svg>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- body -->
+            <div class="body">
+                <div class="content">
+                    <div class="design-system">
+                        <a href="./articles.html" class="back">
+                            <img src="./assets/img/arrow-left-solid.svg" alt="" class="img-back">
+                        </a>
+                        <div class="intension">
+                            <div class="time-intension">
+                                <p class="time">July 14, 2022</p>
+                            </div>
+                            <div class="content-intension">
+                                <h1 class="title">
+                                    Rewriting the cosmOS kernel in Rust
+                                </h1>
+                                <p class="desc">
+                                    When we released the first version of cosmOS last year, it was written in Go. Go is a wonderful programming language with a lot of benefits, but it’s been a while since I’ve seen an article on the front page of Hacker News about rewriting some important
+                                    tool in Go and I see articles on there about rewriting things in Rust every single week.
+                                </p>
+
+                                <pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">ferris_says<span class="token punctuation">::</span></span>say<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token punctuation">{</span>stdout<span class="token punctuation">,</span> <span class="token class-name">BufWriter</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> stdout <span class="token operator">=</span> <span class="token function">stdout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> message <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"Hello fellow hackers"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> width <span class="token operator">=</span> message<span class="token punctuation">.</span><span class="token function">chars</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> writer <span class="token operator">=</span> <span class="token class-name">BufWriter</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>stdout<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">say</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">as_bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> width<span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">mut</span> writer<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+                                <p class="desc">
+                                    I derive a large amount of my self-worth from whether or not Hacker News is impressed with the work I'm doing, so when I realized this, I cancelled all of our existing projects and started migrating everything to Rust immediately.
+                                </p>
+                                <h2 class="sub-title">Sermone fata</h2>
+                                <p class="desc">
+                                    Lorem markdownum, bracchia in redibam! Terque unda puppi nec, linguae posterior in utraque respicere candidus Mimasque formae; quae conantem cervice. Parcite variatus, redolentia adeunt. Tyrioque dies, naufraga sua adit partibus celanda torquere temptata,
+                                    erit maneat et ramos, <a href="#" class="link">iam</a> ait dominari potitus! Tibi litora matremque fumantia condi radicibus opusque.
+                                </p>
+                                <p class="desc">
+                                    Deus feram verumque, fecit, ira tamen, terras per alienae victum. Mutantur levitate quas ubi arcum ripas oculos abest. Adest <a href="#" class="link">commissaque victae</a> in gemitus nectareis ire diva dotibus ora,
+                                    et findi huic invenit; fatis? Fractaque dare superinposita nimiumque simulatoremque sanguine, at voce aestibus diu! Quid veterum hausit tu nil utinam paternos ima, commentaque.
+                                </p>
+                                <pre class="language-c"><code class="language-c">exbibyte_wins <span class="token operator">=</span> <span class="token function">gigahertz</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+grayscaleUtilityClient <span class="token operator">=</span> control_uat<span class="token punctuation">;</span>
+pcmciaHibernate <span class="token operator">=</span> <span class="token function">oop_virus_console</span><span class="token punctuation">(</span>text_mountain<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>stateWaisFirewire <span class="token operator">&gt;=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    jfs <span class="token operator">=</span> <span class="token number">647065</span> <span class="token operator">/</span> <span class="token function">ldapVrml</span><span class="token punctuation">(</span>tutorialRestore<span class="token punctuation">,</span> <span class="token number">85</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    metal_runtime_parse <span class="token operator">=</span> roomComputingResolution <span class="token operator">-</span> toolbarUpload <span class="token operator">+</span>
+            ipx_nvram_open<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    maximizeSidebar <span class="token operator">*=</span> <span class="token function">suffix_url</span><span class="token punctuation">(</span>flatbed <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">,</span> requirements_encoding_node <span class="token operator">+</span>
+            only_qbe_media<span class="token punctuation">,</span> minicomputer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+                            </code></pre>
+                                <p class="desc">Aere repetiti cognataque natus. Habebat vela solutis saepe munus nondum adhuc oscula nomina pignora corpus deserat.</p>
+                                <h2 class="sub-title">Lethaei Pindumve me quae dinumerat Pavor</h2>
+                                <p class="desc">
+                                    Idem se saxa fata pollentibus geminos; quos pedibus. Est urnis Herses omnes nec divite: et ille illa furit sim verbis Cyllenius.
+                                </p>
+                                <ol class="list-numb">
+                                    <li class="item desc">
+                                        <span class="numb">1.</span> Captus inpleverunt collo
+                                    </li>
+                                    <li class="item desc">
+                                        <span class="numb">2.</span> Nec nam placebant
+                                    </li>
+                                    <li class="item desc">
+                                        <span class="numb">3.</span> Siquos vulgus
+                                    </li>
+                                    <li class="item desc">
+                                        <span class="numb">4.</span> Dictis carissime fugae
+                                    </li>
+                                    <li class="item desc">
+                                        <span class="numb">5.</span> A tacitos nulla viginti
+                                    </li>
+                                </ol>
+                                <p class="desc">
+                                    Ungues fistula annoso, ille addit linoque motatque uberior verso <a href="#" class="link">rubuerunt</a> confine desuetaque. Sanguine anteit emerguntque expugnacior est pennas iniqui ecce haeret genus: peiora imagine
+                                    fossas Cephisos formosa! Refugitque amata <a href="#" class="link">refelli</a> supplex. Summa brevis vetuere tenebas, hostes vetantis, suppressit, arreptum regna. Postquam conpescit iuvenis habet corpus, et erratica,
+                                    perdere, tot mota ars talis.
+                                </p>
+                                <pre class="language-c"><code class="language-c">digital<span class="token punctuation">.</span>webcam_dual_frequency <span class="token operator">=</span> webmasterMms<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">+</span> language_standalone_google<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cc_inbox_layout <span class="token operator">*=</span> file_character<span class="token punctuation">;</span>
+    task <span class="token operator">+=</span> p<span class="token punctuation">;</span>
+    lockUnicode <span class="token operator">+=</span> <span class="token function">enterprise_monochrome</span><span class="token punctuation">(</span>tokenFunctionPersonal<span class="token punctuation">,</span> keyVirtual<span class="token punctuation">,</span>
+            adf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">windows_binary_esports</span><span class="token punctuation">(</span><span class="token number">87734</span><span class="token punctuation">,</span> <span class="token function">array</span><span class="token punctuation">(</span>restoreRomTopology<span class="token punctuation">,</span> <span class="token function">adRaw</span><span class="token punctuation">(</span><span class="token number">407314</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        dongleBashThumbnail<span class="token punctuation">)</span><span class="token punctuation">,</span> interpreter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            </code></pre>
+                                <p class="desc">
+                                    Sit volat naturam; motu Cancri. Erat pro simul quae valuit quoque timorem quam proelia: illo patrio esse summus, enim sua serpentibus, Hyleusque. Est coniuge recuso; refert Coroniden ignotos manat, adfectu.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer -->
+            <footer class="footer">
+                <div class="content">
+                    <div class="row">
+                        <div class="row-right">
+                            <ul class="list">
+                                <li class="item">
+                                    <a href="./index.html">About</a>
+                                </li>
+                                <li class="item">
+                                    <a href="./projects.html">Project</a>
+                                </li>
+                                <li class="item">
+                                    <a href="./speaking.html">Speaking</a>
+                                </li>
+                                <li class="item">
+                                    <a href="./uses.html">Uses</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row-left">© 2023 Spencer Sharp. All rights reserved.</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+</body>
+
+</html>
